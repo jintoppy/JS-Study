@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>4.html</title>
+</head>
+<body>
+<h1>5.html</h1>
+<p id="hello"></p>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script>
+	function hello(msg) {
+		document.getElementById("hello").innerHTML = msg;
+	}
+
+	var socket = io.connect("/",{
+		"connect timeout": 3000,
+		"reconnect": false
+	});
+
+	socket.on("hello",hello);
+
+</script>
+</body>
+</html>

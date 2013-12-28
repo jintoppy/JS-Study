@@ -1,0 +1,39 @@
+html, body { margin:0px; padding:0px; height:100%; }
+
+#content { position:relative; height:100%;
+	-moz-box-sizing:border-box; box-sizing:border-box;
+}
+
+#loginentry { display:none; }
+
+#whome { display:none; position:absolute; top:5px; right:5px; white-space:nowrap; }
+	#whome #myimg { display:none; border:0px; vertical-align:middle; height:22px; }
+	#whome #myname { font-weight:bold; line-height:22px; padding-left:8px; padding-right:8px; }
+
+#leaderboard { display:none; position:absolute; top:35px; right:5px; width:150px; height:240px; padding:0px 5px 5px 5px; overflow:scroll; border:1px solid #666; background-color:#fff; z-index:1;
+	-moz-box-sizing:border-box; box-sizing:border-box;
+}
+	#leaderboard h2 { font-size:17px; text-align:center; text-decoration:underline; margin-top:5px; }
+	#leaderboard ul { list-style:none; margin:0px 8px; padding:0px; position:relative; }
+		#leaderboard ul li { position:relative; }
+			#leaderboard .leader { float:left; }
+			#leaderboard .score { float:right; }
+			#leaderboard ul li:after { content:"."; display:block; height:0; clear:both; visibility:hidden; }
+
+#captureme { display:none; position:absolute; width:550px; height:420px; left:50%; top:50%; border:5px solid rgba(150,150,150,0.6); border-radius:10px; background-color:#fff; background-clip:padding-box; z-index:1000;
+	-ms-transform:translate(-275px,-210px); -webkit-transform:translate(-275px,-210px); transform:translate(-275px,-210px);
+	-moz-box-sizing:border-box; box-sizing:border-box;
+}
+	#captureme video { display:table; margin:0px auto; z-index:1; }
+	#captureme #btncontainer { position:absolute; left:0px; top:5px; width:100%; text-align:center; z-index:10; }
+
+#areyouready { display:none; position:absolute; width:300px; height:100px; left:50%; top:50%; border:5px solid rgba(150,150,150,0.6); border-radius:10px; background-color:#fff; background-clip:padding-box; z-index:1001;
+	-ms-transform:translate(-150px,-50px); -webkit-transform:translate(-150px,-50px); transform:translate(-150px,-50px);
+	-moz-box-sizing:border-box; box-sizing:border-box;
+}
+	#areyouready input[type='button'] { display:block; border:3px outset #aaa; border-radius:5px; font-size:25px; margin:21px auto; padding:8px 18px; }
+
+#game { display:none; position:relative; z-index:2; width:700px; }
+	#game #playingsurface { position:relative; width:400px; height:400px; }
+		#game #playingsurface canvas { position:absolute; width:400px; height:400px; left:0px; top:0px; }
+	#game #them { width:150px; position:absolute; left:425px; top:100px; }

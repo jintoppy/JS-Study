@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>60.html</title>
+<style>
+#pointer { position:absolute; left:0px; top:0px; width:2px; height:2px; background-color:blue; }
+</style>
+</head>
+<body>
+<h1>60.html</h1>
+<p id="hello"></p>
+<p>
+<input id="msgtobroadcast"> <input type="button" id="dobroadcast" value="send">
+</p>
+<p id="broadcast"></p>
+
+<div id="pointer"></div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+	function hello(msg) {
+		document.getElementById("hello").innerHTML = msg;
+	}
+
+	function broadcast(msg) {
+		document.getElementById("broadcast").innerHTML = document.getElementById("broadcast").innerHTML + msg + "<br>";
+	}
+
+	function handleCoords(coords) {
+		if ($pointer) {
+			$pointer.css({
+				left: (coords.x - 1) + "px",
+				top: (coords.y - 1) + "px"
+			});
+		}
+	}
+
+	var socket = io.connect("/",{
+		"connect timeout": 3000,
+		"reconnect": false
+	});
+
+	var $pointer;
+
+	$(document).ready(function(){ $pointer = $("#pointer"); });
+
+	socket.on("hello",hello);
+	socket.on("broadcast",broadcast);
+	socket.on("coords",handleCoords);
+
+	document.getElementById("dobroadcast").addEventListener(
+		"click",
+		function(){
+			var inp = document.getElementById("msgtobroadcast");
+			socket.emit("msg",inp.value);
+			inp.value = "";
+		},
+		false
+	);
+
+	$(document).bind("mousemove",function(evt){
+		socket.emit("spy",{ x: evt.pageX, y: evt.pageY });
+	});
+
+</script>
+</body>
+</html>
